@@ -44,7 +44,7 @@ async function loadBooks() {
             <div class="ms-md-4 ms-lg-4 mt-3 mt-md-0 mt-lg-0">
               <h3>${rec.name}</h3>
               <div class="d-flex"> <p><p class="fw-bold me-2">Details:</P>  ${rec.description} </p></div>
-              <div class="d-flex"> <p><p class="fw-bold me-2">Facilities:</P>  ${rec.Rtype} </p></div>
+              <div class="d-flex"> <p><p class="fw-bold me-2">Type:</P>  ${rec.Rtype} </p></div>
             </div>
           </div>
           <div class="col">
@@ -52,12 +52,11 @@ async function loadBooks() {
           }' class="list-group-item" data-liked="${false}">
               <span class="list-group-item mb-2 text-primary fw-bolder"><h5>Price: ${rec.price
           }$</h5></span>
-              <span class="list-group-item mb-4 text-warning fw-bolder">Date: ${formattedDate}</span>
               <button id='heartBtn' class="btn btn-danger border-0 heartBtn">
                 <i class="fa-regular fa-heart"></i>
               </button>
               <span class="like-count text-danger fw-bold">${rec.likes}</span>
-              <button type="button" class="btn btn-primary w-75 h-100 mt-3" data-toggle="modal" data-target="#exampleModal#exampleModal">
+              <button type="button" class="btn btn-primary w-75 h-100 mt-5" data-toggle="modal" data-target="#exampleModal#exampleModal">
                 More Details
              </button>
              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -118,9 +117,8 @@ async function BookDetails(event) {
                 <div class="mt-5 mt-md-0 mt-lg-0 col-md-6 col-lg-6 col-12">
                 <h3 class="mt-5">${rec.name}</h3>
                 <div class="d-flex"><p><h6 class="fw-bold me-2">Details:</h6> ${rec.description} </p></div>
-                <div class="d-flex"><p><h6 class="fw-bold me-2">Facilities:</h6> ${rec.Rtype}</p></div>
+                <div class="d-flex"><p><h6 class="fw-bold me-2">Type:</h6> ${rec.Rtype}</p></div>
                 <div class="d-flex"><p><h6 class="fw-bold me-2">Address:</h6> The Mall Rd, Rawalpindi, Punjab 46000</p></div>
-                <div class="d-flex"><p><h6 class="fw-bold me-2">Departments:</h6> PC Hotel Swimming Pool</p></div>
                 <div class="d-flex"><p><h6 class="fw-bold me-2">Phone:</h6> (051) 111 505 505</p></div>
             </div>            
                     <div class="mt-5">
