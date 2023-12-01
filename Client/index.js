@@ -1,4 +1,5 @@
 const localhost = "https://awesom-books-library-server-side-production.up.railway.app";
+// const localhost = "http://localhost:4000";
 document.addEventListener("DOMContentLoaded", function () {
   loadBooks();
   getBooks();
@@ -50,13 +51,13 @@ async function loadBooks() {
           <div class="col">
             <div id='likeCount_${rec._id
           }' class="list-group-item" data-liked="${false}">
-              <span class="list-group-item mb-2 text-primary fw-bolder"><h5>Price: ${rec.price
-          }$</h5></span>
+              <span class="list-group-item mb-4 fw-bolder"><button id="purchaseButton" class="btn btn-grey btn-primary" onClick=payment("${rec._id}") >Buy Now ${rec.price
+          }$</button></span>
               <button id='heartBtn' class="btn btn-danger border-0 heartBtn">
                 <i class="fa-regular fa-heart"></i>
               </button>
               <span class="like-count text-danger fw-bold">${rec.likes}</span>
-              <button type="button" class="btn btn-primary w-75 h-100 mt-5" data-toggle="modal" data-target="#exampleModal#exampleModal">
+              <button type="button" class="btn btn-primary btn-sm w-75 h-100 mt-5" data-toggle="modal" data-target="#exampleModal#exampleModal">
                 More Details
              </button>
              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -260,7 +261,7 @@ async function getBooks() {
           </tr>
         </thead>
         <tbody></tbody>`;
-    
+
       if (rec.length > 0) {
         for (let i = 0; i < rec.length; i++) {
           const book = rec[i];
@@ -281,7 +282,7 @@ async function getBooks() {
         Container.appendChild(noBookMsg);
       }
     }
-    
+
   } catch (error) {
     console.log(error);
   }
@@ -293,7 +294,7 @@ async function deleteBook(bookId) {
   const isConfirmed = confirm("Are you sure you want to delete this book?");
 
   if (!isConfirmed) {
-    return; 
+    return;
   }
 
   try {
@@ -313,5 +314,43 @@ async function deleteBook(bookId) {
     }
   } catch (error) {
     console.log(error);
+  }
+}
+
+
+async function payment(bookID) {
+  try {
+
+    const bookDetailsResponse = await fetch(`${localhost}/api/books/fetchBook/${bookID}`);
+    if (!bookDetailsResponse.ok) {
+      const error = await bookDetailsResponse.json();
+      throw error;
+    }
+
+    const bookDetails = await bookDetailsResponse.json();
+
+    
+    const paymentResponse = await fetch(`${localhost}/api/books/payment/${bookID}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        items: [
+          { id: bookID, quantity: 1, name: bookDetails.name }
+        ]
+      }),
+    });
+
+    if (!paymentResponse.ok) {
+      const paymentError = await paymentResponse.json();
+      throw paymentError;
+    }
+
+    const { url } = await paymentResponse.json();
+    window.location = url;
+
+  } catch (error) {
+    console.error(error.message);
   }
 }
