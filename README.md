@@ -6,6 +6,38 @@ Welcome to the Awesom Books Library System, a full-stack web application for man
 
 ## API Reference
 
+#### Create User
+
+```http
+  GET /api/auth/CreateUser
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `string` | **Required**. Your API key |
+
+#### Login to account
+
+```http
+  GET /api/auth/login
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to  |
+
+#### Fetch User
+
+```http
+  GET /api/auth/getUser
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of item to  |
+
+
+
 #### Get all Books
 
 ```http
