@@ -143,5 +143,5 @@ The App will work fine but if you want to add new end point so you need key to c
 ## Authors
 
 - [@Ehtisham Ahmed Gondal](https://github.com/ShamiGondal)
-- [@Ahmad Naeem](https://github.com/ahmadnaeem313)
+
 
